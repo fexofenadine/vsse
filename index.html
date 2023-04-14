@@ -484,8 +484,11 @@
         textarea.value = formatJson(json);
       };
 
-      const formatJson = (json) =>
-        JSON.stringify(json, null, 2).replace('"checksum": "', '"checksum":"');
+      const formatJson = (json) => JSON.stringify(json, null, 2);
+    
+      const replacer = (key, value) => (key === 'checksum' ? '' : value);
+    
+      const prepareJson = (json) => JSON.stringify(json, replacer, 0);
 
       const updateChecksum = async () => {
         error.innerText = '';
@@ -495,8 +498,7 @@
           return false;
         }
         try {
-          json.checksum = '';
-          json.checksum = await sha256(formatJson(json));
+          json.checksum = await sha256(prepareJson(json));
         } catch (e) {
           error.innerText = `Error: ${e}`;
           return false;
