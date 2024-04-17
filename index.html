@@ -61,10 +61,10 @@
     </style>
   </head>
   <body>
-    <h1>Vampire Survivors Save Editor</h1>
+    <h1>Vampire Survivors [v1.9] Save Editor</h1>
     <small>
-      Last updated: August 5th, 2022 &mdash;
-      <a href="https://github.com/benediktwerner/vampire-survivors-save-editor">
+      Last updated: April 18th, 2024 &mdash;
+      <a href="https://github.com/fexofenadine/vsse">
         Source
       </a>
     </small>
@@ -127,6 +127,17 @@
             </div>
           </li>
           <li>
+            <b>Windows (XBox):</b>
+            <code>%LocalAppData%\Packages\poncle.VampireSurvivors_9pv5cyp4vwdsr\SystemAppData\wgs\00090000098D240D_00000000000000000000000065116356\{long number folder}\{long number file}</code><br />
+            <div style="margin-left: 2em">
+              (which translates to something like
+              <code>
+                C:\Users\&lt;your
+                username&gt;\AppData\Local\Packages\poncle.VampireSurvivors_9pv5cyp4vwdsr\SystemAppData\wgs\00090000098D240D_00000000000000000000000065116356\0123456789abcdef0123456789abcdef\0123456789abcdef0123456789abcdef</code
+              >)
+            </div>
+          </li>
+          <li>
             <b>MacOS:</b>
             <code>
               $HOME/Library/Application
@@ -152,7 +163,7 @@
           You can ignore any advice you may have read elsewhere about making
           sure the formatting doesn't change or keeping it all on one line. This
           editor will automatically make sure the checksum is always calculated
-          correctly.
+          correctly (now).
         </p>
       </div>
     </main>
@@ -481,10 +492,12 @@
           error.innerText = 'Error: Invalid JSON';
           return;
         }
-        textarea.value = formatJson(json);
+        textarea.value = formatJsonFriendly(json);
       };
 
-      const formatJson = (json) => JSON.stringify(json, null, 2);
+      const formatJsonFriendly = (json) => JSON.stringify(json, null, 2);
+
+      const formatJson = (json) => JSON.stringify(json);
     
       const replacer = (key, value) => (key === 'checksum' ? '' : value);
     

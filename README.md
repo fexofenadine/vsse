@@ -1,4 +1,4 @@
-# Vampire Survivors Save Game Editor 1.4
+# Vampire Survivors [v1.9.x] Save Game Editor
 
 ## License
 
